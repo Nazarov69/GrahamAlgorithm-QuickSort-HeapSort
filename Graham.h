@@ -47,16 +47,17 @@ public:
     List<Point> quick_h() {
         int min_index_y = get_min_y(points);
         points.swap(0, min_index_y);
+        p0 = points.get_value(0);
         sort(points.begin() + 1, points.end(), [&](const Point& p1, const Point& p2) {
-            if (points.get_value(0).orientation(p1, p2) == collinear) {
-                return (points.get_value(0).sq_distance(p1) < points.get_value(0).sq_distance(p2));
+            if (p0.orientation(p1, p2) == collinear) {
+                return (p0.sq_distance(p1) < p0.sq_distance(p2));
             }
-            return (points.get_value(0).orientation(p1, p2) == left);
+            return (p0.orientation(p1, p2) == left);
             });
         List<Point> lst;
         lst.add(points.get_value(0));
         for (int i = 1; i < points.get_size_list(); i++) {
-            while (i < points.get_size_list() - 1 && points.get_value(0).orientation(points.get_value(i), points.get_value(i + 1)) == collinear) {
+            while (i < points.get_size_list() - 1 && p0.orientation(points.get_value(i), points.get_value(i + 1)) == collinear) {
                 i++;
             }
             lst.add(points.get_value(i));
@@ -165,7 +166,7 @@ public:
         List<Point> lst;
         lst.add(points.get_value(0));
         for (int i = 1; i < points.get_size_list(); i++) {
-            while (i < points.get_size_list() - 1 && points.get_value(0).orientation(points.get_value(i), points.get_value(i + 1)) == collinear) {
+            while (i < points.get_size_list() - 1 && p0.orientation(points.get_value(i), points.get_value(i + 1)) == collinear) {
                 i++;
             }
             lst.add(points.get_value(i));

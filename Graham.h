@@ -87,10 +87,10 @@ public:
     }
 
     void heap_sort(List<Point>& local_points) {
-        for (int i = local_points.get_size_list() / DEGREE - 1; i >= 0; i--) {
+        for (int i = (local_points.get_size_list() - 1) / DEGREE; i >= 0; i--) {
             up(local_points, local_points.get_size_list(), i);
         }
-        for (int i = points.get_size_list() - 1; i >= 0; i--){
+        for (int i = points.get_size_list() - 1; i >= 0; i--) {
             local_points.swap(0, i);
             up(local_points, i, 0);
         }
